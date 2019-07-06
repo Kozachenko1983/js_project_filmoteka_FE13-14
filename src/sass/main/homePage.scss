@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('/fonts/roboto-v19-latin-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.homePage__items:hover{
+    cursor: pointer;
+}
+
+
+@media (max-width:320px){
+    .homePage__list{
+        font-family:'Roboto';
+        width:300px;
+        margin:0 auto;
+        margin-bottom: 28px;
+        padding: 0;
+    }
+
+    .homePage__items{
+        position: relative;
+        height: 158px;
+        width: 300px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+    }
+    .homePage__text{
+        position: absolute;
+        left: 8px;
+        bottom: 8px;
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+        line-height: 1.2; 
+    }
+    .homePage__img{
+        object-fit: cover;
+        object-position: center;
+        border-radius: 10px;
+        height: 158px;
+        width: 300px;
+    }
+}
+
+
+@media (min-width:321px) and (max-width:768px){
+    .homePage__list{
+        font-family:'Roboto';
+        width:768px;
+        margin:0 auto;
+        margin-bottom: 28px;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .homePage__items{
+        position: relative;
+        height: 182px;
+        width: 348px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+    }
+    .homePage__text{
+        position: absolute;
+        left: 8px;
+        bottom: 8px;
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+        line-height: 1.2; 
+    }
+    .homePage__img{
+        object-fit: cover;
+        object-position: center;
+        border-radius: 10px;
+        height: 182px;
+        min-width: 348px;
+    }
+}
+
+@media(min-width:769px){
+    .homePage__list{
+        font-family:'Roboto';
+        width:964px;
+        margin:0 auto;
+        margin-bottom: 28px;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        
+    }
+    .homePage__items{
+        position: relative;
+        height: 244px;
+        width: 468px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+    }
+    .homePage__text{
+        position: absolute;
+        left: 8px;
+        bottom: 8px;
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+        line-height: 1.2; 
+    }
+    .homePage__img{
+        object-fit: cover;
+        object-position: center;
+        border-radius: 10px;
+        height: 244px;
+        min-width: 468px;
+    }
+}
