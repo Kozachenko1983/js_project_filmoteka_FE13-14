@@ -2,3 +2,10 @@
    Import partials below
 */
 @import './normalize';
+@import './reset.scss';
+@import './header.scss';
+@import'./main/main.scss';
+@import './main/homePage.scss';
+@import './main/myLibraryPage.scss';
+@import './main/detailsPage.scss';
+@import './footer.scss';
