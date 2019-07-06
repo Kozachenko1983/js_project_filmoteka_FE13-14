@@ -1,10 +1,19 @@
 <section class="homePage" id="homePageShown">
-    <form id="homePage__search" action=""><input type="search" placeholder="Write movie name and click Enter"></form>
-<ul class="homePage__list" id="js-list">
-</ul>
-<div class="homePage__pagination">
-<button class="homePage__prev" data-action="prev"> </button>
-<span class="homePage__value"></span>
-<button class="homePage__next" data-action="next"></button>
-</div>
+  <form id="homePage__search" action="">
+    <input
+      id="homePage__search-input"
+      type="search"
+      placeholder="Write movie name and click Enter"
+    />
+  </form>
+  <ul class="homePage__list" id="js-list"></ul>
+  <div class="homePage__pagination" id="homePage__pagination">
+    <button class="homePage__prev homePage__pagination-elem hidden" data-action="prev">
+      Prev
+    </button>
+    <span class="homePage__value homePage__pagination-elem"></span>
+    <button class="homePage__next homePage__pagination-elem" data-action="next">
+      Next
+    </button>
+  </div>
 </section>
