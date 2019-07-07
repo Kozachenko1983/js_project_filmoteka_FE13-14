@@ -4,31 +4,32 @@ const libraryButtonQueue = document.querySelector('.library__btn--queue');
 
 libraryButtonWatch.addEventListener('click', drawWatchedFilmList);
 libraryButtonQueue.addEventListener('click', drawQueueFilmList);
-const local = JSON.parse(localStorage.getItem('filmsWatched'));
-console.log(lo);
 
-
-
-function drawWatchedFilmList(event) {
-  if (event.target.nodeName != 'BUTTON') return;
+function drawWatchedFilmList() {
   cardLibrary.innerHTML = '';
-  
+  const local = JSON.parse(localStorage.getItem('filmsWatched'));
+  console.log(local);
+  if (local == null || local.length === 0){
+    cardLibrary.innerHTML = "<p class='text-warning'>You do not have watched movies. Add them.</p>"
+  }
   local.forEach(el =>
-    createLibraryCardFunc(el.poster_path, el.title, el.id, el.vote_average),
+    createLibraryCardFunc(el.backdrop_path, el.title, el.id, el.vote_average),
   );
-  libraryButtonWatch.classList.add("library__btn--active")
-  libraryButtonQueue.classList.remove('library__btn--active')
+  libraryButtonWatch.classList.add('library__btn--active');
+  libraryButtonQueue.classList.remove('library__btn--active');
 }
 
-function drawQueueFilmList(event) {
-  if (event.target.nodeName != 'BUTTON') return;
+function drawQueueFilmList() {
   cardLibrary.innerHTML = '';
   const local = JSON.parse(localStorage.getItem('filmsQueue'));
+  if (local == null || local.length === 0){
+    cardLibrary.innerHTML = "<p class='text-warning'>You do not have to queue movies to watch. Add them.</p>"
+  }
   local.forEach(el =>
-    createLibraryCardFunc(el.poster_path, el.title, el.id, el.vote_average),
+    createLibraryCardFunc(el.backdrop_path, el.title, el.id, el.vote_average),
   );
-  libraryButtonWatch.classList.remove("library__btn--active")
-  libraryButtonQueue.classList.add('library__btn--active')
+  libraryButtonWatch.classList.remove('library__btn--active');
+  libraryButtonQueue.classList.add('library__btn--active');
 }
 
 function createLibraryCardFunc(imgPath, filmTitle, movieId, voteAverage) {
@@ -40,5 +41,5 @@ function createLibraryCardFunc(imgPath, filmTitle, movieId, voteAverage) {
 
   cardLibrary.innerHTML += liLibrary;
 
-  // li.addEventListener('click', activeDetailsPage(movieId, bool));
+  // cardLibrary.addEventListener('click', activeDetailsPage(movieId, bool));
 }

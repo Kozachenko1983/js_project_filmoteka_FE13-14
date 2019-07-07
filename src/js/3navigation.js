@@ -26,7 +26,7 @@ function activeLibraryPage() {
     myLibraryPageBtn.classList.add('nav-bar__link-hover');
     homePageBtn.classList.remove('nav-bar__link-hover');
     cardLibrary.addEventListener('click', activeDetailsPage);
-    drawQueueFilmList();
+    drawWatchedFilmList();
 }
 
 function activeDetailsPage(e){
