@@ -4,6 +4,7 @@
 }
 
 .film-inf {
+  display: flex;
   padding-top: 23px;
   font-family: "Roboto";
   letter-spacing: 0.015em;
@@ -67,11 +68,12 @@
 @media (min-width:320px) {
 
   .container {
-    width: 274px;
+    width: 85.5618%;
   }
 
   .film-inf {
-
+    justify-content: space-around;
+    flex-wrap: wrap;
     &__poster {
       width: 274px;
       height: 403px;
@@ -125,7 +127,6 @@
   }
 
   .film-inf {
-    display: flex;
     justify-content: space-between;
 
     &__poster {
@@ -139,7 +140,7 @@
     }
 
     &__about-text {
-      width: 332px;
+      width: 272px;      
     }
 
     &__btns {
@@ -188,7 +189,9 @@
       padding-top: 5px;
       margin-bottom: 12px;
     }
-
+    &__about-text {
+      width: auto;
+  }
   }
 
   .table {
