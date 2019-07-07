@@ -5,18 +5,14 @@ const jsList = document.querySelector('#js-list');
 let renderFilms;
 let pageNumber = 1;
 let ganre;
-jsList.addEventListener('click', activeDetailsPage);
+
 
 window.onload = fetchPopularMoviesList();
 
 let selectFilm = {};
 
 
-function activeDetailsPage(e) {
-    selectFilm.id = e.target.getAttribute('alt');
- 
 
-}
 function fetchPopularMoviesList() {
     fetch('https://api.themoviedb.org/3/movie/popular?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&page=' + `${pageNumber}`)
         .then(response => {
@@ -52,5 +48,7 @@ function createCardFunc(imgPath, filmTitle, movieId) {
     jsList.append(li);
     img.classList.add('homePage__img');
     li.classList.add('homePage__items');
-    p.classList.add('homePage__text'); 
+    p.classList.add('homePage__text');
+    
+    
 }
