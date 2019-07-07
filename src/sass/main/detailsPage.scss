@@ -1,6 +1,6 @@
-.container {
+.container-detailPage {
   margin: 0 auto;
-  min-height: calc(100vh - 80px);
+
 }
 
 .film-inf {
@@ -67,7 +67,7 @@
 
 @media (min-width:320px) {
 
-  .container {
+  .container-detailPage {
     width: 85.5618%;
   }
 
@@ -120,9 +120,9 @@
 
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
 
-  .container {
+  .container-detailPage {
     width: 715px;
   }
 
@@ -170,7 +170,7 @@
 
 @media (min-width: 1024px) {
 
-  .container {
+  .container-detailPage {
     width: 915px;
   }
 
