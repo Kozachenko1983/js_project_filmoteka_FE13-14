@@ -2,20 +2,6 @@ const btnWatched = document.querySelector('#btn--watched');
 const btnQueue = document.querySelector('#btn--queue');
 
 
-
-let selectFilm = {
-  //   movieId: 429617,
-  //   is: false,
-  genres: [{
-    name: 'wer'
-  }, {
-    name: 'wer'
-  }, {
-    name: 'wer' 
-  }],
-  id: 12312,
-}
-
 let ThisMovie = {
   watched: true,
   queue: true,
@@ -51,7 +37,6 @@ function showDetails(data) {
 }
 
 function monitorButtonStatusText() {
-  console.log('sssssss');
   
   if (isVarInLocalstorage('filmsQueue', selectFilm.id)) {
     btnQueue.firstChild.setAttribute('src', './images/calendar-minus.png')
@@ -89,46 +74,16 @@ function adtiveAddingBtn(key, test) {
   }
   monitorButtonStatusText();
 }
-/*
-function toggleToQueue() {
-  let key = 'filmsQueue';
-  let arr = queueFilms;
-  if (!ThisMovie.queue) {
-    console.log('ading   ', selectFilm.movieId);
 
-    arr.unshift(selectFilm.movieId);
-    console.log(arr);
-    console.log('ading   ', selectFilm.movieId);
 
-    localStorage.setItem(key, JSON.stringify(arr));
-  } else {
-    arr = arr.filter((el) => el != selectFilm.movieId);
-    localStorage.setItem(key, JSON.stringify(arr));
-  }
-  monitorButtonStatusText();
-}
 
-function toggleToWatched() {
-  let key = 'filmsWatched';
-  if (!ThisMovie.watched) {
-    arr.push(selectFilm.movieId);
-    localStorage.setItem(key, JSON.stringify(arr));
-  } else {
-    arr = arr.filter((el) => el != selectFilm.movieId);
-    localStorage.setItem(key, JSON.stringify(arr));
-  }
-  monitorButtonStatusText();
-}
-
-*/
 
 function isVarInLocalstorage(key, id) {
   let Storage = JSON.parse(localStorage.getItem(key));
-  //   console.log(Storage);
-
+  
   if (Storage == null) {
     Storage = [];
-    // console.log(12);
+    
     return false;
   }
   return Storage.find(el => el.id == id) != undefined;
@@ -143,9 +98,7 @@ function IsUniqueByKeyInArrOfObjs(key, item) {
   return Storage.find(el => el[id] == item) != undefined;
 
 };
-// btnQueue.addEventListener('click', toggleToQueue);
-// btnWatched.addEventListener('click', toggleToWatched);
-showDetails(selectFilm);
+
 btnQueue.addEventListener('click', () => {
   adtiveAddingBtn('filmsQueue', ThisMovie.queue);
 });
