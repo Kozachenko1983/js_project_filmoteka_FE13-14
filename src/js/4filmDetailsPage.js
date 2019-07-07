@@ -23,11 +23,13 @@ function showDetails(data) {
   const FilmTitle = document.querySelector('#js-Film-title');
   const Poster = document.querySelector('#js-poster');
   let genderText = ' ';
-  data.genres.forEach((el, i) => {
-    genderText += el.name;
-    if (i != data.genres.length - 1) {
-      genderText += ', ';
-    }
+  if (data.genres != null) {
+    data.genres.forEach((el, i) => {
+      genderText += el.name;
+      if (i != data.genres.length - 1) {
+        genderText += ', ';
+      }
+  }
   });
   popularity.textContent = data.popularity;
   OriginTitle.textContent = data.original_title;
