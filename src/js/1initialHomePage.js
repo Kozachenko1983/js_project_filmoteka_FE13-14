@@ -28,6 +28,7 @@ function fetchPopularMoviesList() {
             
 
             let result = data.results;
+
             result.forEach(el => {
                 if (el.backdrop_path !== null) {
                     createCardFunc(el.backdrop_path, el.title, el.id);
@@ -36,6 +37,7 @@ function fetchPopularMoviesList() {
                   } else {
                     createCardFunc('logo', el.title, el.id);
                   }
+
 
             });
 
@@ -49,6 +51,7 @@ function createCardFunc(imgPath, filmTitle, movieId) {
     const li = document.createElement('li');
     const img = document.createElement('img');
     const p = document.createElement('p');
+
     if(imgPath == 'logo') {
         img.setAttribute('src', './images/logo.png');
     } else {
@@ -56,6 +59,7 @@ function createCardFunc(imgPath, filmTitle, movieId) {
     }
 
     img.setAttribute('alt', `${movieId}`);
+
     p.textContent = `${filmTitle}`;
     li.append(img);
     li.append(p);

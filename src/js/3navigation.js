@@ -1,4 +1,4 @@
-
+const jsLogo = document.querySelector('#js-logo');
 const homePageBtn = document.querySelector('#homePage-js');
 const myLibraryPageBtn = document.querySelector('#myLibraryPage-js');
 const detailsPageShown = document.querySelector('#detailsPage_show');
@@ -6,8 +6,9 @@ const myLibraryPageShown = document.querySelector('#myLibraryPage_show');
 const homePageShown = document.querySelector('#homePage_show');
 const jsList = document.querySelector('#js-list');
 
-window.onload = showHomePage();
 
+window.onload = showHomePage();
+jsLogo.addEventListener('click', showHomePage);
 myLibraryPageBtn.addEventListener('click', activeLibraryPage);
 homePageBtn.addEventListener('click', showHomePage);
 jsList.addEventListener('click', activeDetailsPage);
@@ -18,6 +19,8 @@ function showHomePage() {
     homePageShown.classList.remove('page-disactive');
     homePageBtn.classList.add('nav-bar__link-hover');
     myLibraryPageBtn.classList.remove('nav-bar__link-hover');
+    document.title = 'Home Page';
+
 }
 function activeLibraryPage() {
     homePageShown.classList.add('page-disactive');
@@ -27,13 +30,14 @@ function activeLibraryPage() {
     homePageBtn.classList.remove('nav-bar__link-hover');
     cardLibrary.addEventListener('click', activeDetailsPage);
     drawWatchedFilmList();
+    document.title = 'Library Page';
 }
 
 function activeDetailsPage(e) {
     const re = /page-disactive/;
     let classList = myLibraryPageShown.classList.value;
-
-    showDetailsPage(e.target.getAttribute('js-id'), !re.test(classList));
+    if(e.target.parentNode.nodeName !== 'LI') return;
+    showDetailsPage(e.target.getAttribute('js-id'), !re.test(classList));    
 }
 
 function showDetailsPage(movieId, itsLibraryFilm) {
@@ -47,6 +51,7 @@ function showDetailsPage(movieId, itsLibraryFilm) {
             .then(Response => Response.json())
             .then(data => {
                 selectFilm = data;
+                document.title = selectFilm.title;
                 homePageShown.classList.add('page-disactive');
                 detailsPageShown.classList.remove('page-disactive');
                 myLibraryPageShown.classList.add('page-disactive');
@@ -65,5 +70,6 @@ function showDetailsPage(movieId, itsLibraryFilm) {
         detailsPageShown.classList.remove('page-disactive');
         myLibraryPageShown.classList.add('page-disactive');
         showDetails(selectFilm);
+        document.title = selectFilm.title;
     }
 }

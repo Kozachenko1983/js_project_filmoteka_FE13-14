@@ -73,6 +73,7 @@ function fetchFilms(inputValue, pageNumber) {
     https://api.themoviedb.org/3/search/movie?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&query=${inputValue}&page=${pageNumber}&include_adult=false`;
   }
 
+
   fetch(API)
     .then(response => response.json())
     .then(data => {
@@ -81,6 +82,7 @@ function fetchFilms(inputValue, pageNumber) {
         errorMessage.hidden = false;
         fetchPopularMoviesList();
       }
+
       jsList.innerHTML = '';
       arr.forEach(el => {
         if (el.backdrop_path != null) {
@@ -100,3 +102,4 @@ function fetchFilms(inputValue, pageNumber) {
 }
 
 form.addEventListener('submit', searchFilms);
+
