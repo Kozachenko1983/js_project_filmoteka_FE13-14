@@ -1,123 +1,46 @@
+
 .homePage__items:hover{
   cursor: pointer;
+
 }
 .homePage__list {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18px;
 }
 
-@media (max-width: 320px) {
-  .homePage__list {
-    font-family: 'Roboto';
-    width: 300px;
-    margin: 0 auto;
-    margin-bottom: 28px;
-    padding: 0;
-  }
 
-  .homePage__items {
-    position: relative;
-    height: 158px;
-    width: 300px;
-    border-radius: 20px;
-    margin-bottom: 12px;
-  }
-  .homePage__text {
-    position: absolute;
-    left: 8px;
-    bottom: 8px;
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    line-height: 1.2;
-  }
-  .homePage__img {
-    object-fit: cover;
-    object-position: center;
-    border-radius: 10px;
-    height: 158px;
-    width: 300px;
-  }
+.homePage__items {
+  width: 298px;
+  height: 156px;
+  margin-bottom: 10px;
+  position: relative;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0) 30%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
 }
 
-@media (min-width: 320px) {
-  .homePage {
-    padding-bottom: 18px;
-  }
-
-  .homePage__list {
-    font-family: 'Roboto';
-    width: 768px;
-    margin: 0 auto;
-    margin-bottom: 8px;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  .homePage__items {
-    position: relative;
-    height: 182px;
-    width: 348px;
-    border-radius: 20px;
-    margin-bottom: 12px;
-  }
-  .homePage__text {
-    position: absolute;
-    left: 8px;
-    bottom: 8px;
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    line-height: 1.2;
-  }
-  .homePage__img {
-    object-fit: cover;
-    object-position: center;
-    border-radius: 10px;
-    height: 182px;
-    min-width: 348px;
-  }
+.homePage__img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 10px;
+  z-index: -1;
 }
 
-@media (min-width: 768px) {
-  .homePage__list {
-    font-family: 'Roboto';
-    width: 964px;
-    margin: 0 auto;
-    margin-bottom: 4px;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  .homePage__items {
-    position: relative;
-    height: 244px;
-    width: 468px;
-    border-radius: 20px;
-    margin-bottom: 12px;
-  }
-  .homePage__text {
-    position: absolute;
-    left: 8px;
-    bottom: 8px;
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    line-height: 1.2;
-  }
-  .homePage__img {
-    object-fit: cover;
-    object-position: center;
-    border-radius: 10px;
-    height: 244px;
-    min-width: 468px;
-  }
-  .homePage {
-    padding-bottom: 14px;
-  }
-}
-
-.homePage {
-  padding-bottom: 24px;
-  
+.homePage__text {
+  position: absolute;
+  left: 12px;
+  bottom: 8px;
+  color: #fff;
+  font-family: 'Roboto';
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
 }
 
 #homePage__search {
@@ -163,8 +86,6 @@
   font-size: 12px;
 }
 
-//BUTTONS
-
 #homePage__pagination {
   margin: 0 auto;
   width: 320px;
@@ -179,7 +100,7 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: inset 0 1px 1px white;
-  /* Text style for "Prev" */
+  
   text-shadow: 0 1px 1px white;
   color: #556270;
   font-family: sans-serif;
@@ -188,14 +109,15 @@
   line-height: 26px;
 }
 
-@media (min-width: 768px) {
+
+
   #homePage__search {
     margin: 0 0 30px;
   }
 
   #homePage__search-input {
     width: 284px;
-    font-size: 17px;
+    font-size: 16px;
     line-height: 22px;
   }
 
@@ -205,8 +127,32 @@
     font-weight: 700;
     line-height: 25px;
   }
-}
+
 @media (min-width: 1024px) {
+  .homePage {
+    padding-bottom: 12px;
+  }
+
+  .homePage__list {
+    margin: 0 auto;
+    width: 1024px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .homePage__items {
+    width: 468px;
+    height: 244px;
+    margin: 0 32px 20px 0;
+  }
+
+  .homePage__text {
+    font-size: 18px;
+    left: 18px;
+    bottom: 12px;
+  }
+
   #homePage__search {
     margin: 0 0 30px;
   }
@@ -223,6 +169,7 @@
     line-height: 20px;
   }
 }
+
 
 .hidden {
   visibility: hidden;

@@ -82,4 +82,8 @@ function fetchFilms(inputValue, pageNumber) {
       })
     })
     .catch(error => console.log('ERROR' + error));
-  }
+
+
+    input.value = '';
+}
+
