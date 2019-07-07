@@ -36,6 +36,9 @@
 .nav-bar__item{
     text-decoration: none;
 }
+.header__logo{
+    cursor: pointer;
+}
 .header__container{
     display: flex;
     justify-content: space-between;
