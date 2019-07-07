@@ -8,39 +8,61 @@ const jsList = document.querySelector('#js-list');
 
 window.onload = showHomePage();
 
-myLibraryPageBtn.addEventListener('click', showLibraryPage);
+myLibraryPageBtn.addEventListener('click', activeLibraryPage);
 homePageBtn.addEventListener('click', showHomePage);
 jsList.addEventListener('click', activeDetailsPage);
 
 function showHomePage() {
-    myLibraryPageShown.style.display = 'none';
-    detailsPageShown.style.display = 'none';
-    homePageShown.style.display = 'block';
+    myLibraryPageShown.classList.add('page-disactive');
+    detailsPageShown.classList.add('page-disactive');
+    homePageShown.classList.remove('page-disactive');
     homePageBtn.classList.add('nav-bar__link-hover');
     myLibraryPageBtn.classList.remove('nav-bar__link-hover');
 }
-function showLibraryPage() {
-    homePageShown.style.display = 'none';
-    detailsPageShown.style.display = 'none';
-    myLibraryPageShown.style.display = 'block';
+function activeLibraryPage() {
+    homePageShown.classList.add('page-disactive');
+    detailsPageShown.classList.add('page-disactive');
+    myLibraryPageShown.classList.remove('page-disactive');
     myLibraryPageBtn.classList.add('nav-bar__link-hover');
     homePageBtn.classList.remove('nav-bar__link-hover');
+    cardLibrary.addEventListener('click', activeDetailsPage);
+    drawQueueFilmList();
 }
 
-function activeDetailsPage(e) {
-    homePageShown.style.display = 'block';
-    detailsPageShown.style.display = 'none';
-    myLibraryPageShown.style.display = 'none';
-    let id = e.target.getAttribute('alt');
-    let ApiLink = `https://api.themoviedb.org/3/movie/${id}?api_key=8498946f9c7874ef33ac19a931c494c9`;
+function activeDetailsPage(e){
+    const re = /page-disactive/;
+    let classList = myLibraryPageShown.classList.value;
+    
+    showDetailsPage(e.target.getAttribute('js-id'), !re.test(classList));
+}
+
+function showDetailsPage(movieId, itsLibraryFilm ) {
+    
+    homePageShown.classList.remove('page-disactive');
+    detailsPageShown.classList.add('page-disactive');
+    myLibraryPageShown.classList.add('page-disactive');
+    if(!itsLibraryFilm){
+    let ApiLink = `https://api.themoviedb.org/3/movie/${movieId}?api_key=8498946f9c7874ef33ac19a931c494c9`;
     fetch(ApiLink)
         .then(Response => Response.json())
         .then(data => {
             selectFilm = data;
-            homePageShown.style.display = 'none';
-            detailsPageShown.style.display = 'block';
-            myLibraryPageShown.style.display = 'none';
+            homePageShown.classList.add('page-disactive');
+            detailsPageShown.classList.remove('page-disactive');
+            myLibraryPageShown.classList.add('page-disactive');
             showDetails(selectFilm);
         })
         .catch(error => console.log(error));
+    }else{
+        let filmsQueue = JSON.parse(localStorage.getItem('filmsQueue'));
+
+        // const foundFilm = filmsQueue.find(el => {
+        //     el.id == movieId;
+        // })
+        console.log(movieId);
+        
+        let filmsWatched = JSON.parse(localStorage.getItem('filmsWatched'));
+        
+        
+    }
 }
