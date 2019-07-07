@@ -29,7 +29,7 @@ function fetchPopularMoviesList() {
 
             let result = data.results;
             result.forEach(element => {
-                createCardFunc(element.poster_path, element.title, element.id);
+                createCardFunc(element.backdrop_path, element.title, element.id);
 
             });
 
@@ -45,7 +45,7 @@ function createCardFunc(imgPath, filmTitle, movieId) {
     const img = document.createElement('img');
     const p = document.createElement('p');
     img.setAttribute('src', `https://image.tmdb.org/t/p/w500` + `${imgPath}`);
-    img.setAttribute('js-id', `${movieId}`);
+    img.setAttribute('alt', `${movieId}`);
     p.textContent = `${filmTitle}`;
     li.append(img);
     li.append(p);

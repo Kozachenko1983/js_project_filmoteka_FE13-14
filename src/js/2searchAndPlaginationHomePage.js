@@ -6,12 +6,12 @@ const prevBtn = pagination.querySelector('[data-action = "prev"]');
 const nextBtn = pagination.querySelector('[data-action = "next"]');
 const pageValue = pagination.querySelector('.homePage__value');
 
-let inputValue;
+let inputValue = '';
 
 pageValue.textContent = pageNumber;
 const errorMessage = document.createElement('p');
 errorMessage.setAttribute('id', 'homePage__search-error-message');
-errorMessage.textContent = 'Error! Invalid input';
+errorMessage.textContent = 'Sorry, no movie matches your request';
 errorMessage.hidden = true;
 
 form.append(errorMessage);
@@ -30,12 +30,14 @@ function plaginationNavigation(evt) {
   if (target === prevBtn) {
     pageNumber -= 1;
     pageValue.textContent = pageNumber;
+    fetchFilms(inputValue, pageNumber);
   }
 
   if (target === nextBtn) {
     pageNumber += 1;
     pageValue.textContent = pageNumber;
     prevBtn.classList.remove('hidden');
+    fetchFilms(inputValue, pageNumber);
   }
 }
 
@@ -47,10 +49,10 @@ function searchFilms(evt) {
 
 function fetchFilms(inputValue, pageNumber) {
   if (inputValue === '') {
-    return (errorMessage.hidden = false);
+    fetchPopularMoviesList();
   }
 
-  ul.innerHTML = null;
+  jsList.innerHTML = null;
   errorMessage.hidden = true;
 
   const api = '8498946f9c7874ef33ac19a931c494c9';
@@ -72,10 +74,13 @@ function fetchFilms(inputValue, pageNumber) {
     .then(response => response.json())
     .then(data => {
       const arr = data.results;
-      if (arr.length === 0) {
-        alert('Sorry, no movie matches your request');
+      if (inputValue !== '' && arr.length === 0) {
+        console.log(inputValue);
+        console.log(arr.length);
+        errorMessage.hidden = false;
+        fetchPopularMoviesList();
       }
-      arr.forEach(el => createCardFunc(el.poster_path, el.title, el.id));
+      arr.forEach(el => createCardFunc(el.backdrop_path, el.title, el.id));
     })
     .catch(error => console.log('ERROR' + error));
 }
