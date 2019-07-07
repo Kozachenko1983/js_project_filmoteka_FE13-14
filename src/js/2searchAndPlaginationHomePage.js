@@ -50,15 +50,19 @@ function plaginationNavigation(evt) {
   }
 }
 
+// начало нового кода
 function searchFilms(evt) {
   evt.preventDefault();
+  errorMessage.hidden = true;
   inputValue = input.value;
-  if (inputValue === '') {
+  if (inputValue === '') { 
+    jsList.innerHTML = '';
     fetchPopularMoviesList();
   } else {
     fetchFilms(inputValue, pageNumber);
   }
 }
+// конец нового кода
 
 function fetchFilms(inputValue, pageNumber) {
   if (inputValue === '') {
@@ -73,7 +77,6 @@ function fetchFilms(inputValue, pageNumber) {
     https://api.themoviedb.org/3/search/movie?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&query=${inputValue}&page=${pageNumber}&include_adult=false`;
   }
 
-
   fetch(API)
     .then(response => response.json())
     .then(data => {
@@ -87,13 +90,11 @@ function fetchFilms(inputValue, pageNumber) {
       arr.forEach(el => {
         if (el.backdrop_path != null) {
           createCardFunc(el.backdrop_path, el.title, el.id);
-        } else if(el.poster_path != null)  {
+        } else if (el.poster_path != null) {
           createCardFunc(el.poster_path, el.title, el.id);
         } else {
           createCardFunc('logo', el.title, el.id);
-
         }
-
       });
     })
     .catch(error => console.log('ERROR' + error));
@@ -102,4 +103,3 @@ function fetchFilms(inputValue, pageNumber) {
 }
 
 form.addEventListener('submit', searchFilms);
-
