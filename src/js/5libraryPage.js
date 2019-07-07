@@ -26,7 +26,7 @@ localStorage.setItem( "settings", JSON.stringify(settings) );
 function drawWatchedFilmList(event) {
   if (event.target.nodeName != 'BUTTON') return;
 
-  const local = JSON.parse(localStorage.getItem('filmsWatched'));
+  const local = JSON.parse(localStorage.getItem('settings'));
   local.forEach(el =>
     createLibraryCardFunc(el.poster_path, el.title, el.id, el.vote_average),
   );
