@@ -29,40 +29,41 @@ function activeLibraryPage() {
     drawWatchedFilmList();
 }
 
-function activeDetailsPage(e){
+function activeDetailsPage(e) {
     const re = /page-disactive/;
     let classList = myLibraryPageShown.classList.value;
-    
+
     showDetailsPage(e.target.getAttribute('js-id'), !re.test(classList));
 }
 
-function showDetailsPage(movieId, itsLibraryFilm ) {
-    
+function showDetailsPage(movieId, itsLibraryFilm) {
+
     homePageShown.classList.remove('page-disactive');
     detailsPageShown.classList.add('page-disactive');
     myLibraryPageShown.classList.add('page-disactive');
-    if(!itsLibraryFilm){
-    let ApiLink = `https://api.themoviedb.org/3/movie/${movieId}?api_key=8498946f9c7874ef33ac19a931c494c9`;
-    fetch(ApiLink)
-        .then(Response => Response.json())
-        .then(data => {
-            selectFilm = data;
-            homePageShown.classList.add('page-disactive');
-            detailsPageShown.classList.remove('page-disactive');
-            myLibraryPageShown.classList.add('page-disactive');
-            showDetails(selectFilm);
-        })
-        .catch(error => console.log(error));
-    }else{
+    if (!itsLibraryFilm) {
+        let ApiLink = `https://api.themoviedb.org/3/movie/${movieId}?api_key=8498946f9c7874ef33ac19a931c494c9`;
+        fetch(ApiLink)
+            .then(Response => Response.json())
+            .then(data => {
+                selectFilm = data;
+                homePageShown.classList.add('page-disactive');
+                detailsPageShown.classList.remove('page-disactive');
+                myLibraryPageShown.classList.add('page-disactive');
+                showDetails(selectFilm);
+            })
+            .catch(error => console.log(error));
+    } else {
         let filmsQueue = JSON.parse(localStorage.getItem('filmsQueue'));
-
-        // const foundFilm = filmsQueue.find(el => {
-        //     el.id == movieId;
-        // })
-        console.log(movieId);
-        
         let filmsWatched = JSON.parse(localStorage.getItem('filmsWatched'));
-        
-        
+
+        selectFilm = filmsWatched.find(el => el.id == movieId);
+        if (selectFilm === undefined) {
+            selectFilm = filmsQueue.find(el => el.id == movieId);
+        }
+        homePageShown.classList.add('page-disactive');
+        detailsPageShown.classList.remove('page-disactive');
+        myLibraryPageShown.classList.add('page-disactive');
+        showDetails(selectFilm);
     }
 }

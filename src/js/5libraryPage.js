@@ -5,15 +5,17 @@ const libraryButtonQueue = document.querySelector('.library__btn--queue');
 libraryButtonWatch.addEventListener('click', drawWatchedFilmList);
 libraryButtonQueue.addEventListener('click', drawQueueFilmList);
 
+
 function drawWatchedFilmList() {
   cardLibrary.innerHTML = '';
   const local = JSON.parse(localStorage.getItem('filmsWatched'));
-  console.log(local);
+ 
   if (local == null || local.length === 0){
     cardLibrary.innerHTML = "<p class='text-warning'>You do not have watched movies. Add them.</p>"
   }
   local.forEach(el =>
     createLibraryCardFunc(el.backdrop_path, el.title, el.id, el.vote_average),
+
   );
   libraryButtonWatch.classList.add('library__btn--active');
   libraryButtonQueue.classList.remove('library__btn--active');

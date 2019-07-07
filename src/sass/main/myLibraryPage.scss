@@ -1,7 +1,9 @@
 .wrapper {
     width: 100%;
 }
-
+.library{
+  min-height: calc(100vh - 80px);
+}
 .library__buttons {
     display: flex;
     justify-content: center;
