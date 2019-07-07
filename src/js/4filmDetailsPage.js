@@ -40,7 +40,7 @@ function showDetails(data) {
       selectFilm.backdrop_path = `https://image.tmdb.org/t/p/w500${data.backdrop_path}`;
      
     }
-    console.log( selectFilm.poster_path, '----', selectFilm.backdrop_path);
+    
     
     Poster.setAttribute('src',selectFilm.poster_path);
     monitorButtonStatusText();
