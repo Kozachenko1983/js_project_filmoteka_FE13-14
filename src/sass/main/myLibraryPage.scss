@@ -53,7 +53,14 @@
   width: 93.75%;
   list-style: none;
   position: relative;
-  margin-bottom: 12px;  
+  margin-bottom: 12px; 
+  img{
+    min-width: 100%;
+  } 
+}
+.text-warning {
+  font-size: 50px;
+  margin: 0 auto;
 }
  @media (min-width: 760px){
     .library__list {
