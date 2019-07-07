@@ -20,7 +20,8 @@ function showHomePage() {
     homePageBtn.classList.add('nav-bar__link-hover');
     myLibraryPageBtn.classList.remove('nav-bar__link-hover');
     document.title = 'Home Page';
-
+    jsList.innerHTML = '';
+    fetchPopularMoviesList();
 }
 function activeLibraryPage() {
     homePageShown.classList.add('page-disactive');
