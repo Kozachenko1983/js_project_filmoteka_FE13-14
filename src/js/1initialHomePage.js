@@ -1,11 +1,15 @@
 'use strict';
 
+const jsScrollBtn = document.querySelector('#js-scroll-btn');
 
 const jsList = document.querySelector('#js-list');
 let renderFilms;
 let pageNumber = 1;
 let ganre;
-
+jsScrollBtn.addEventListener('click', scrollTop);
+function scrollTop(){
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+}
 
 window.onload = fetchPopularMoviesList();
 

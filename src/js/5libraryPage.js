@@ -5,23 +5,20 @@ const libraryButtonQueue = document.querySelector('.library__btn--queue');
 libraryButtonWatch.addEventListener('click', drawWatchedFilmList);
 libraryButtonQueue.addEventListener('click', drawQueueFilmList);
 const local = JSON.parse(localStorage.getItem('filmsWatched'));
-console.log(lo);
 
 
 
-function drawWatchedFilmList(event) {
-  if (event.target.nodeName != 'BUTTON') return;
+
+function drawWatchedFilmList() {
   cardLibrary.innerHTML = '';
-  
   local.forEach(el =>
-    createLibraryCardFunc(el.poster_path, el.title, el.id, el.vote_average),
+    createLibraryCardFunc(el.poster_path, el.title, el.id, el.vote_average)
   );
   libraryButtonWatch.classList.add("library__btn--active")
   libraryButtonQueue.classList.remove('library__btn--active')
 }
 
-function drawQueueFilmList(event) {
-  if (event.target.nodeName != 'BUTTON') return;
+function drawQueueFilmList() {
   cardLibrary.innerHTML = '';
   const local = JSON.parse(localStorage.getItem('filmsQueue'));
   local.forEach(el =>
