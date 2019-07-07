@@ -28,12 +28,16 @@ function fetchPopularMoviesList() {
             
 
             let result = data.results;
-            result.forEach(element => {
-                if(element.backdrop_path != null) {
-                    createCardFunc(element.backdrop_path, element.title, element.id);
-                } else {
-                    createCardFunc(element.poster_path, element.title, element.id);
-                }
+
+            result.forEach(el => {
+                if (el.backdrop_path !== null) {
+                    createCardFunc(el.backdrop_path, el.title, el.id);
+                  } else if(el.poster_path !== null)  {
+                    createCardFunc(el.poster_path, el.title, el.id);
+                  } else {
+                    createCardFunc('logo', el.title, el.id);
+                  }
+
 
             });
 
@@ -43,13 +47,19 @@ function fetchPopularMoviesList() {
         .catch(error => console.log(error));
 }
 
-
 function createCardFunc(imgPath, filmTitle, movieId) {
     const li = document.createElement('li');
     const img = document.createElement('img');
     const p = document.createElement('p');
-    img.setAttribute('src', `https://image.tmdb.org/t/p/w500` + `${imgPath}`);
-    img.setAttribute('js-id', `${movieId}`);
+
+    if(imgPath == 'logo') {
+        img.setAttribute('src', './images/logo.png');
+    } else {
+        img.setAttribute('src', `https://image.tmdb.org/t/p/w500` + `${imgPath}`);
+    }
+
+    img.setAttribute('alt', `${movieId}`);
+
     p.textContent = `${filmTitle}`;
     li.append(img);
     li.append(p);

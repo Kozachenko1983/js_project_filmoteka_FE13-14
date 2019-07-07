@@ -16,8 +16,6 @@ errorMessage.hidden = true;
 
 form.append(errorMessage);
 
-form.addEventListener('submit', searchFilms);
-
 pagination.addEventListener('click', plaginationNavigation);
 
 function plaginationNavigation(evt) {
@@ -30,41 +28,52 @@ function plaginationNavigation(evt) {
   if (target === prevBtn) {
     pageNumber -= 1;
     pageValue.textContent = pageNumber;
-    fetchFilms(inputValue, pageNumber);
+    if (inputValue === '') {
+      jsList.innerHTML = '';
+      fetchPopularMoviesList();
+    } else {
+      fetchFilms(inputValue, pageNumber);
+    }
   }
 
   if (target === nextBtn) {
     pageNumber += 1;
     pageValue.textContent = pageNumber;
     prevBtn.classList.remove('hidden');
-    fetchFilms(inputValue, pageNumber);
+
+    if (inputValue === '') {
+      jsList.innerHTML = '';
+      fetchPopularMoviesList();
+    } else {
+      fetchFilms(inputValue, pageNumber);
+    }
   }
 }
 
 function searchFilms(evt) {
   evt.preventDefault();
   inputValue = input.value;
-  fetchFilms(inputValue);
+  if (inputValue === '') {
+    fetchPopularMoviesList();
+  } else {
+    fetchFilms(inputValue, pageNumber);
+  }
 }
 
 function fetchFilms(inputValue, pageNumber) {
   if (inputValue === '') {
-    fetchPopularMoviesList();
+    return fetchPopularMoviesList();
   }
 
-  jsList.innerHTML = null;
-  errorMessage.hidden = true;
-
-  const api = '8498946f9c7874ef33ac19a931c494c9';
-  // inputValue = '';
   let API;
-  let x = 1;
   if (inputValue == '') {
     API = `https://api.themoviedb.org/3/movie/popular?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&page=' + ${pageNumber}`;
   } else {
     API = `
     https://api.themoviedb.org/3/search/movie?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&query=${inputValue}&page=${pageNumber}&include_adult=false`;
   }
+
+
   fetch(API)
     .then(response => response.json())
     .then(data => {
@@ -73,17 +82,24 @@ function fetchFilms(inputValue, pageNumber) {
         errorMessage.hidden = false;
         fetchPopularMoviesList();
       }
+
+      jsList.innerHTML = '';
       arr.forEach(el => {
         if (el.backdrop_path != null) {
-        createCardFunc(el.backdrop_path, el.title, el.id);
+          createCardFunc(el.backdrop_path, el.title, el.id);
+        } else if(el.poster_path != null)  {
+          createCardFunc(el.poster_path, el.title, el.id);
         } else {
-        createCardFunc(el.poster_path, el.title, el.id);
+          createCardFunc('logo', el.title, el.id);
+
         }
-      })
+
+      });
     })
     .catch(error => console.log('ERROR' + error));
 
-
-    input.value = '';
+  input.value = '';
 }
+
+form.addEventListener('submit', searchFilms);
 
