@@ -36,7 +36,9 @@ function activeLibraryPage() {
 function activeDetailsPage(e) {
     const re = /page-disactive/;
     let classList = myLibraryPageShown.classList.value;
-    if(e.target.parentNode.nodeName !== 'LI') return;
+    console.log(e.target);
+    
+    if(e.target.nodeName !== 'LI') return;
     showDetailsPage(e.target.getAttribute('js-id'), !re.test(classList));    
 }
 
@@ -51,6 +53,9 @@ function showDetailsPage(movieId, itsLibraryFilm) {
             .then(Response => Response.json())
             .then(data => {
                 selectFilm = data;
+                if(selectFilm.poster_path === null){
+                    selectFilm.poster_path = './images/logo.png';
+                }
                 document.title = selectFilm.title;
                 homePageShown.classList.add('page-disactive');
                 detailsPageShown.classList.remove('page-disactive');

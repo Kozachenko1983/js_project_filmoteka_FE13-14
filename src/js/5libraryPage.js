@@ -55,8 +55,10 @@ function drawQueueFilmList() {
 
 function createLibraryCardFunc(imgPath, filmTitle, movieId, voteAverage) {
 
+
   const liLibrary = `<li class ="library__list-item">
 <img src="${imgPath}" js-id="${movieId}" alt="poster film">
+
 <p class="library__vote">${voteAverage}</p>
 <p class="library__nameFilm">${filmTitle}</p>
 </li>`;
