@@ -29,7 +29,11 @@ function fetchPopularMoviesList() {
 
             let result = data.results;
             result.forEach(element => {
-                createCardFunc(element.backdrop_path, element.title, element.id);
+                if(element.backdrop_path != null) {
+                    createCardFunc(element.backdrop_path, element.title, element.id);
+                } else {
+                    createCardFunc(element.poster_path, element.title, element.id);
+                }
 
             });
 
