@@ -31,8 +31,7 @@ function activeDetailsPage(e) {
     homePageShown.style.display = 'block';
     detailsPageShown.style.display = 'none';
     myLibraryPageShown.style.display = 'none';
-    let id = e.target.getAttribute('alt')
-
+    let id = e.target.getAttribute('alt');
     let ApiLink = `https://api.themoviedb.org/3/movie/${id}?api_key=8498946f9c7874ef33ac19a931c494c9`;
     fetch(ApiLink)
         .then(Response => Response.json())
@@ -41,7 +40,7 @@ function activeDetailsPage(e) {
             homePageShown.style.display = 'none';
             detailsPageShown.style.display = 'block';
             myLibraryPageShown.style.display = 'none';
-
+            showDetails(selectFilm);
         })
         .catch(error => console.log(error));
 }
