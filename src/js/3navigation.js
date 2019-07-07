@@ -37,7 +37,6 @@ function activeLibraryPage() {
 function activeDetailsPage(e) {
     const re = /page-disactive/;
     let classList = myLibraryPageShown.classList.value;
-    console.log(e.target);
     
     if(e.target.nodeName !== 'LI') return;
     showDetailsPage(e.target.getAttribute('js-id'), !re.test(classList));    

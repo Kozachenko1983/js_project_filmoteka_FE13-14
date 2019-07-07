@@ -52,6 +52,7 @@ function plaginationNavigation(evt) {
 
 // начало нового кода
 function searchFilms(evt) {
+  pageNumber = 1;
   evt.preventDefault();
   errorMessage.hidden = true;
   inputValue = input.value;
@@ -100,6 +101,7 @@ function fetchFilms(inputValue, pageNumber) {
     .catch(error => console.log('ERROR' + error));
 
   input.value = '';
+  
 }
 
 form.addEventListener('submit', searchFilms);
