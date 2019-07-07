@@ -60,6 +60,7 @@
 .library__list-item {
   margin: 0 auto;
   width: 298px;
+  height: 156px;
   list-style: none;
   position: relative;
   margin-bottom: 12px;
@@ -69,7 +70,8 @@
 
 
   img {
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
     border-radius: 10px;
     position: inherit;
     z-index: -1;
@@ -92,6 +94,7 @@
 
   .library__list-item {
     width: 344px;
+    height: 182px;
     margin: 0 0 16px 28px;
   }
 
@@ -117,6 +120,7 @@
 @media(min-width: 1024px) {
   .library__list-item {
     width: 464px;
+    height: 244px;
   }
 
   .library__vote {
