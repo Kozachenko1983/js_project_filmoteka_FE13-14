@@ -1,12 +1,20 @@
 const btnWatched = document.querySelector('#btn--watched');
 const btnQueue = document.querySelector('#btn--queue');
 
-// let selectFilm = {
-//   //   movieId: 429617,
-//   //   is: false,
-//   genres: [1, 2, 3],
-//   id: 12312,
-// }
+
+
+let selectFilm = {
+  //   movieId: 429617,
+  //   is: false,
+  genres: [{
+    name: 'wer'
+  }, {
+    name: 'wer'
+  }, {
+    name: 'wer' 
+  }],
+  id: 12312,
+}
 
 let ThisMovie = {
   watched: true,
@@ -29,21 +37,22 @@ function showDetails(data) {
       if (i != data.genres.length - 1) {
         genderText += ', ';
       }
+    });
+    popularity.textContent = data.popularity;
+    OriginTitle.textContent = data.original_title;
+    Vote.textContent = data.vote_average;
+    VoteCount.textContent = data.vote_count;
+    FilmTitle.textContent = data.title;
+    description.textContent = data.overview;
+    Gender.textContent = genderText;
+    Poster.setAttribute('src', `https://image.tmdb.org/t/p/w500${data.poster_path}`);
+    monitorButtonStatusText();
   }
-  });
-  popularity.textContent = data.popularity;
-  OriginTitle.textContent = data.original_title;
-  Vote.textContent = data.vote_average;
-  VoteCount.textContent = data.vote_count;
-  FilmTitle.textContent = data.title;
-  description.textContent = data.overview;
-  Gender.textContent = genderText;
-  Poster.setAttribute('src', `https://image.tmdb.org/t/p/w500${data.poster_path}`);
-  monitorButtonStatusText();
 }
 
 function monitorButtonStatusText() {
-
+  console.log('sssssss');
+  
   if (isVarInLocalstorage('filmsQueue', selectFilm.id)) {
     btnQueue.firstChild.setAttribute('src', './images/calendar-minus.png')
     btnQueue.lastChild.textContent = 'Remove from queue';
@@ -66,7 +75,7 @@ function monitorButtonStatusText() {
   }
 }
 
-function test(key, test) {
+function adtiveAddingBtn(key, test) {
   let arr = JSON.parse(localStorage.getItem(key));
   if (arr == null) {
     arr = []
@@ -80,7 +89,7 @@ function test(key, test) {
   }
   monitorButtonStatusText();
 }
-
+/*
 function toggleToQueue() {
   let key = 'filmsQueue';
   let arr = queueFilms;
@@ -111,11 +120,11 @@ function toggleToWatched() {
   monitorButtonStatusText();
 }
 
-
+*/
 
 function isVarInLocalstorage(key, id) {
   let Storage = JSON.parse(localStorage.getItem(key));
-//   console.log(Storage);
+  //   console.log(Storage);
 
   if (Storage == null) {
     Storage = [];
@@ -136,12 +145,11 @@ function IsUniqueByKeyInArrOfObjs(key, item) {
 };
 // btnQueue.addEventListener('click', toggleToQueue);
 // btnWatched.addEventListener('click', toggleToWatched);
+showDetails(selectFilm);
 btnQueue.addEventListener('click', () => {
-  test('filmsQueue', ThisMovie.queue);
+  adtiveAddingBtn('filmsQueue', ThisMovie.queue);
 });
 
 btnWatched.addEventListener('click', () => {
-  test('filmsWatched', ThisMovie.watched);
+  adtiveAddingBtn('filmsWatched', ThisMovie.watched);
 });
-
-showDetails(selectFilm);
