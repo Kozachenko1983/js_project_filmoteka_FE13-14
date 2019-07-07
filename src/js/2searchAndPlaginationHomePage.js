@@ -75,12 +75,12 @@ function fetchFilms(inputValue, pageNumber) {
     .then(data => {
       const arr = data.results;
       if (inputValue !== '' && arr.length === 0) {
-        console.log(inputValue);
-        console.log(arr.length);
         errorMessage.hidden = false;
         fetchPopularMoviesList();
       }
       arr.forEach(el => createCardFunc(el.backdrop_path, el.title, el.id));
     })
     .catch(error => console.log('ERROR' + error));
+
+    input.value = '';
 }
