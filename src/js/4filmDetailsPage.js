@@ -53,7 +53,7 @@ function monitorButtonStatusText() {
     btnWatched.lastChild.textContent = 'Remove from watched';
     ThisMovie.watched = true;
   } else {
-    btnWatched.firstChild.setAttribute('src', '/images/video.png')
+    btnWatched.firstChild.setAttribute('src', './images/video.png')
     btnWatched.lastChild.textContent = 'Add to watched';
     ThisMovie.watched = false;
 
