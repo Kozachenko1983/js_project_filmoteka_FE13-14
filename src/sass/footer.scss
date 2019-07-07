@@ -1,9 +1,18 @@
+.wrapper{
+    position: relative;
+    min-height: 100%;
+}
+body {
+    height: 100%;
+}
 .footer{
     text-align: center;
-    position: relative;
     padding: 36px 0;
     background-color: #77c1bb;
-    z-index: 1;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 .footer__button {
     border-radius: 50%;
@@ -19,6 +28,7 @@
     padding: 20px;
 }  
 .footer__text{
+    position: relative;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     color: #372c48;
