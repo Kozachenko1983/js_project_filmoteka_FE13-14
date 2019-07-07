@@ -56,21 +56,16 @@ function fetchFilms(inputValue, pageNumber) {
   errorMessage.hidden = true;
 
   const api = '8498946f9c7874ef33ac19a931c494c9';
-  fetch(
-    'https://api.themoviedb.org/3/search/movie?api_key=' +
-      api +
-      '&language=en-US&page=' +
-      pageNumber +
-      '&query=' +
-      inputValue,
-    {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    },
-  )
+  // inputValue = '';
+  let API;
+  let x = 1;
+  if (inputValue == '') {
+    API = `https://api.themoviedb.org/3/movie/popular?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&page=' + ${pageNumber}`;
+  } else {
+    API = `
+    https://api.themoviedb.org/3/search/movie?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&query=${inputValue}&page=${pageNumber}&include_adult=false`;
+  }
+  fetch(API)
     .then(response => response.json())
     .then(data => {
       const arr = data.results;
@@ -78,9 +73,17 @@ function fetchFilms(inputValue, pageNumber) {
         errorMessage.hidden = false;
         fetchPopularMoviesList();
       }
-      arr.forEach(el => createCardFunc(el.backdrop_path, el.title, el.id));
+      arr.forEach(el => {
+        if (el.backdrop_path != null) {
+        createCardFunc(el.backdrop_path, el.title, el.id);
+        } else {
+        createCardFunc(el.poster_path, el.title, el.id);
+        }
+      })
     })
     .catch(error => console.log('ERROR' + error));
 
+
     input.value = '';
 }
+
