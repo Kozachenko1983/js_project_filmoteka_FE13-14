@@ -33,9 +33,15 @@ function showDetails(data) {
     Gender.textContent = genderText;
     if (data.poster_path == './images/logo.png') {
       selectFilm.poster_path = './images/logo.png';
+      selectFilm.backdrop_path = './images/logo.png';
+
     } else {
       selectFilm.poster_path = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+      selectFilm.backdrop_path = `https://image.tmdb.org/t/p/w500${data.backdrop_path}`;
+     
     }
+    console.log( selectFilm.poster_path, '----', selectFilm.backdrop_path);
+    
     Poster.setAttribute('src',selectFilm.poster_path);
     monitorButtonStatusText();
   }
