@@ -45,7 +45,7 @@ function createCardFunc(imgPath, filmTitle, movieId) {
     const img = document.createElement('img');
     const p = document.createElement('p');
     img.setAttribute('src', `https://image.tmdb.org/t/p/w500` + `${imgPath}`);
-    img.setAttribute('alt', `${movieId}`);
+    img.setAttribute('js-id', `${movieId}`);
     p.textContent = `${filmTitle}`;
     li.append(img);
     li.append(p);
