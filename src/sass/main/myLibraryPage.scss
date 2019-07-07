@@ -1,78 +1,114 @@
 .wrapper {
-    width: 100%;
+  width: 100%;
 }
 
 .library__buttons {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 15px;
-    margin-bottom: 10px;
-    box-shadow: 0 5px 3px #9895a2;
-    width: 100%;
-  }
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
+  padding-top: 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 5px 3px #9895a2;
+}
 
-  .library__btn {
-    width: 43.75%;
-    color: aqua;
-    background: none;
-    border: none;
-    border-bottom: 2px solid #9895a2;
-    padding: 12px;
-    color: #101010;
+.library__btn {
+  width: 140px;
+  color: aqua;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #9895a2;
+  padding: 12px;
+  color: #101010;
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-size: 16px;
 
-    &--active {
-      background: #77c1bb;
-      color: #f3f6f6;
-      border-bottom: none;
-    }    
-  }
 
-  
-  .library__vote {
-    position: absolute;
-    top: 5%;
-    right: 3%;
-    background: #f3f6f6;
-    border-radius: 5px;
-    padding: 0 5px;
-    font-size: 12px;
-    font-family: "Roboto-medium", serif;
-  }
-
-  .library__nameFilm {
-    position: absolute;
-    bottom: 5%;
-    left: 3%;
+  &--active {
+    background: #77c1bb;
     color: #f3f6f6;
-    font-size: 12px;
-    font-family: "Roboto-medium", serif;
+    border-bottom: none;
   }
+}
+
+
+.library__vote {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #f3f6f6;
+  border-radius: 5px;
+  padding: 0 5px;
+  font-size: 12px;
+  font-family: "Roboto", serif;
+  font-weight: 500;
+  text-align: center;
+}
+
+.library__nameFilm {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: #f3f6f6;
+  font-size: 12px;
+  font-family: "Roboto", serif;
+  font-weight: 500;
+}
 
 .library__list-item {
   margin: 0 auto;
-  width: 93.75%;
+  width: 298px;
   list-style: none;
   position: relative;
-  margin-bottom: 12px; 
-  img{
-    min-width: 100%;
-  } 
+  margin-bottom: 12px;
+
+  img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
 }
+
 .text-warning {
   font-size: 50px;
   margin: 0 auto;
 }
- @media (min-width: 768px){
-    .library__list {
-        display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-    }
-    .library__list-item{
-        width: 44.79%;
-        margin: 0 0 2% 4%;
-    }
-    .library__btn{
-        width: 18.75%;
-    }
- }
+
+
+@media (min-width: 768px) {
+  .library__list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+  }
+
+  .library__list-item {
+    width: 344px;
+    margin: 0 0 16px 28px;
+  }
+
+  .library__vote {
+    font-size: 15px
+  }
+
+  .library__nameFilm {
+    font-size: 14px;
+  }
+}
+
+@media(min-width: 1024px) {
+  .library__list-item {
+    width: 464px;
+  }
+
+  .library__vote {
+    font-size: 20px;
+    width: 48px;
+    border-radius: 8px;
+  }
+
+  .library__nameFilm {
+    font-size: 19px;
+  }
+}
+
