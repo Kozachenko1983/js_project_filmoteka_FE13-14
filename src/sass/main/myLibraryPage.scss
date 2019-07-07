@@ -1,4 +1,3 @@
-
 .library__buttons {
   display: flex;
   justify-content: center;
@@ -19,14 +18,11 @@
   font-family: "Roboto", serif;
   font-weight: 400;
   font-size: 16px;
- 
-
 
   &--active {
     background: #77c1bb;
     color: #f3f6f6;
     border-bottom: none;
-    
   }
 }
 
@@ -64,13 +60,21 @@
 .library__list-item {
   margin: 0 auto;
   width: 298px;
+  height: 156px;
   list-style: none;
   position: relative;
   margin-bottom: 12px;
+  border-radius: 10px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0) 30%,
+      rgba(0, 0, 0, 0.7) 100%);
+
 
   img {
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
     border-radius: 10px;
+    position: inherit;
+    z-index: -1;
   }
 }
 
@@ -90,6 +94,7 @@
 
   .library__list-item {
     width: 344px;
+    height: 182px;
     margin: 0 0 16px 28px;
   }
 
@@ -105,11 +110,17 @@
     font-size: 40px;
     font-family: 'Roboto', serif;
   }
+
+  .gradient {
+    width: inherit;
+    height: auto;
+  }
 }
 
 @media(min-width: 1024px) {
   .library__list-item {
     width: 464px;
+    height: 244px;
   }
 
   .library__vote {
@@ -127,4 +138,3 @@
     margin: 0 auto;
   }
 }
-

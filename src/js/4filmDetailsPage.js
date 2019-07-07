@@ -31,13 +31,18 @@ function showDetails(data) {
     FilmTitle.textContent = data.title;
     description.textContent = data.overview;
     Gender.textContent = genderText;
-    Poster.setAttribute('src', `https://image.tmdb.org/t/p/w500${data.poster_path}`);
+    if (data.poster_path == './images/logo.png') {
+      selectFilm.poster_path = './images/logo.png';
+    } else {
+      selectFilm.poster_path = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+    }
+    Poster.setAttribute('src',selectFilm.poster_path);
     monitorButtonStatusText();
   }
 }
 
 function monitorButtonStatusText() {
-  
+
   if (isVarInLocalstorage('filmsQueue', selectFilm.id)) {
     btnQueue.firstChild.setAttribute('src', './images/calendar-minus.png')
     btnQueue.lastChild.textContent = 'Remove from queue';
@@ -80,10 +85,10 @@ function adtiveAddingBtn(key, test) {
 
 function isVarInLocalstorage(key, id) {
   let Storage = JSON.parse(localStorage.getItem(key));
-  
+
   if (Storage == null) {
     Storage = [];
-    
+
     return false;
   }
   return Storage.find(el => el.id == id) != undefined;
