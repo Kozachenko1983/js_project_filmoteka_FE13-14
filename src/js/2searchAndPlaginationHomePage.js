@@ -50,9 +50,7 @@ function plaginationNavigation(evt) {
   }
 }
 
-// начало нового кода
 function searchFilms(evt) {
-  pageNumber = 1;
   evt.preventDefault();
   errorMessage.hidden = true;
   inputValue = input.value;
@@ -60,23 +58,18 @@ function searchFilms(evt) {
     jsList.innerHTML = '';
     fetchPopularMoviesList();
   } else {
-    fetchFilms(inputValue, pageNumber);
+    fetchFilms(inputValue, 1);
+    pageNumber = 1;
+    pageValue.textContent = pageNumber;
+    prevBtn.classList.add('hidden');
   }
 }
-// конец нового кода
 
 function fetchFilms(inputValue, pageNumber) {
-  if (inputValue === '') {
-    return fetchPopularMoviesList();
-  }
 
-  let API;
-  if (inputValue == '') {
-    API = `https://api.themoviedb.org/3/movie/popular?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&page=' + ${pageNumber}`;
-  } else {
-    API = `
+  let API = `
     https://api.themoviedb.org/3/search/movie?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&query=${inputValue}&page=${pageNumber}&include_adult=false`;
-  }
+  
 
   fetch(API)
     .then(response => response.json())

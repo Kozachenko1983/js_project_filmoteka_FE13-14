@@ -9,9 +9,9 @@ jsScrollBtn.addEventListener('click', scrollTop);
 
 function scrollTop() {
   document.body.scrollTop = document.documentElement.scrollTop = 0;
-}
+} // window.onload = fetchPopularMoviesList();
 
-window.onload = fetchPopularMoviesList();
+
 var selectFilm = {};
 
 function fetchPopularMoviesList() {
@@ -102,11 +102,9 @@ function plaginationNavigation(evt) {
       fetchFilms(inputValue, pageNumber);
     }
   }
-} // начало нового кода
-
+}
 
 function searchFilms(evt) {
-  pageNumber = 1;
   evt.preventDefault();
   errorMessage.hidden = true;
   inputValue = input.value;
@@ -115,24 +113,15 @@ function searchFilms(evt) {
     jsList.innerHTML = '';
     fetchPopularMoviesList();
   } else {
-    fetchFilms(inputValue, pageNumber);
+    fetchFilms(inputValue, 1);
+    pageNumber = 1;
+    pageValue.textContent = pageNumber;
+    prevBtn.classList.add('hidden');
   }
-} // конец нового кода
-
+}
 
 function fetchFilms(inputValue, pageNumber) {
-  if (inputValue === '') {
-    return fetchPopularMoviesList();
-  }
-
-  var API;
-
-  if (inputValue == '') {
-    API = "https://api.themoviedb.org/3/movie/popular?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&page=' + ".concat(pageNumber);
-  } else {
-    API = "\n    https://api.themoviedb.org/3/search/movie?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&query=".concat(inputValue, "&page=").concat(pageNumber, "&include_adult=false");
-  }
-
+  var API = "\n    https://api.themoviedb.org/3/search/movie?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&query=".concat(inputValue, "&page=").concat(pageNumber, "&include_adult=false");
   fetch(API).then(function (response) {
     return response.json();
   }).then(function (data) {

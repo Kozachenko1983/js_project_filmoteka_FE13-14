@@ -11,8 +11,7 @@ function scrollTop(){
     document.body.scrollTop = document.documentElement.scrollTop = 0;
 }
 
-window.onload = fetchPopularMoviesList();
-
+// window.onload = fetchPopularMoviesList();
 let selectFilm = {};
 
 
