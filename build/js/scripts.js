@@ -14,7 +14,7 @@ function scrollTop() {
 
 var selectFilm = {};
 
-function fetchPopularMoviesList() {
+function fetchPopularMoviesList(pageNumber) {
   fetch('https://api.themoviedb.org/3/movie/popular?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&page=' + "".concat(pageNumber)).then(function (response) {
     if (response.ok) return response.json();
     throw new Error("Error while fetching: ".concat(response.statusText));
@@ -75,6 +75,7 @@ form.addEventListener('submit', searchFilms);
 
 function paginationNavigation(evt) {
   var target = evt.target;
+  console.log(pageNumber);
 
   if (pageNumber === 2) {
     prevBtn.classList.add('hidden');
@@ -86,7 +87,7 @@ function paginationNavigation(evt) {
 
     if (!inputValue) {
       jsList.innerHTML = '';
-      fetchPopularMoviesList();
+      fetchPopularMoviesList(pageNumber);
     } else {
       fetchFilms(inputValue, pageNumber);
     }
@@ -99,7 +100,7 @@ function paginationNavigation(evt) {
 
     if (!inputValue) {
       jsList.innerHTML = '';
-      fetchPopularMoviesList();
+      fetchPopularMoviesList(pageNumber);
     } else {
       fetchFilms(inputValue, pageNumber);
     }
@@ -118,7 +119,7 @@ function searchFilms(evt) {
     prevBtn.classList.add('hidden');
   } else {
     jsList.innerHTML = '';
-    fetchPopularMoviesList();
+    fetchPopularMoviesList(1);
   }
 }
 
@@ -173,7 +174,10 @@ function showHomePage() {
   myLibraryPageBtn.classList.remove('nav-bar__link-hover');
   document.title = 'Home Page';
   jsList.innerHTML = '';
-  fetchPopularMoviesList();
+  pageNumber = 1;
+  fetchPopularMoviesList(pageNumber);
+  pageValue.textContent = pageNumber;
+  prevBtn.classList.add('hidden');
 }
 
 function activeLibraryPage() {

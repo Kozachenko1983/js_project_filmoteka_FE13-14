@@ -21,7 +21,7 @@ form.addEventListener('submit', searchFilms);
 
 function paginationNavigation(evt) {
   const target = evt.target;
-  
+  console.log(pageNumber)
   if (pageNumber === 2) {
     prevBtn.classList.add('hidden');
   }
@@ -31,7 +31,7 @@ function paginationNavigation(evt) {
     pageValue.textContent = pageNumber;
     if (!inputValue) {
       jsList.innerHTML = '';
-      fetchPopularMoviesList();
+      fetchPopularMoviesList(pageNumber);
     } else {
       fetchFilms(inputValue, pageNumber);
     }
@@ -44,7 +44,7 @@ function paginationNavigation(evt) {
 
     if (!inputValue) {
       jsList.innerHTML = '';
-      fetchPopularMoviesList();
+      fetchPopularMoviesList(pageNumber);
 
     } else {
       fetchFilms(inputValue, pageNumber);
@@ -64,7 +64,7 @@ function searchFilms(evt) {
     prevBtn.classList.add('hidden');
   } else {
     jsList.innerHTML = '';
-    fetchPopularMoviesList();
+    fetchPopularMoviesList(1);
   }
 
 }
