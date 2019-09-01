@@ -9,9 +9,9 @@ jsScrollBtn.addEventListener('click', scrollTop);
 
 function scrollTop() {
   document.body.scrollTop = document.documentElement.scrollTop = 0;
-}
+} // window.onload = fetchPopularMoviesList();
 
-window.onload = fetchPopularMoviesList();
+
 var selectFilm = {};
 
 function fetchPopularMoviesList() {
@@ -32,6 +32,7 @@ function fetchPopularMoviesList() {
   }).catch(function (error) {
     return console.log(error);
   });
+  inputValue = '';
 }
 
 function createCardFunc(imgPath, filmTitle, movieId) {
@@ -62,16 +63,17 @@ var pagination = document.getElementById('homePage__pagination');
 var prevBtn = pagination.querySelector('[data-action = "prev"]');
 var nextBtn = pagination.querySelector('[data-action = "next"]');
 var pageValue = pagination.querySelector('.homePage__value');
-var inputValue = '';
+var inputValue;
 pageValue.textContent = pageNumber;
 var errorMessage = document.createElement('p');
 errorMessage.setAttribute('id', 'homePage__search-error-message');
 errorMessage.textContent = 'Sorry, no movie matches your request';
 errorMessage.hidden = true;
 form.append(errorMessage);
-pagination.addEventListener('click', plaginationNavigation);
+pagination.addEventListener('click', paginationNavigation);
+form.addEventListener('submit', searchFilms);
 
-function plaginationNavigation(evt) {
+function paginationNavigation(evt) {
   var target = evt.target;
 
   if (pageNumber === 2) {
@@ -82,7 +84,7 @@ function plaginationNavigation(evt) {
     pageNumber -= 1;
     pageValue.textContent = pageNumber;
 
-    if (inputValue === '') {
+    if (!inputValue) {
       jsList.innerHTML = '';
       fetchPopularMoviesList();
     } else {
@@ -95,44 +97,33 @@ function plaginationNavigation(evt) {
     pageValue.textContent = pageNumber;
     prevBtn.classList.remove('hidden');
 
-    if (inputValue === '') {
+    if (!inputValue) {
       jsList.innerHTML = '';
       fetchPopularMoviesList();
     } else {
       fetchFilms(inputValue, pageNumber);
     }
   }
-} // начало нового кода
-
+}
 
 function searchFilms(evt) {
-  pageNumber = 1;
   evt.preventDefault();
   errorMessage.hidden = true;
-  inputValue = input.value;
 
-  if (inputValue === '') {
+  if (input.value) {
+    inputValue = input.value;
+    fetchFilms(inputValue, 1);
+    pageNumber = 1;
+    pageValue.textContent = pageNumber;
+    prevBtn.classList.add('hidden');
+  } else {
     jsList.innerHTML = '';
     fetchPopularMoviesList();
-  } else {
-    fetchFilms(inputValue, pageNumber);
   }
-} // конец нового кода
-
+}
 
 function fetchFilms(inputValue, pageNumber) {
-  if (inputValue === '') {
-    return fetchPopularMoviesList();
-  }
-
-  var API;
-
-  if (inputValue == '') {
-    API = "https://api.themoviedb.org/3/movie/popular?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&page=' + ".concat(pageNumber);
-  } else {
-    API = "\n    https://api.themoviedb.org/3/search/movie?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&query=".concat(inputValue, "&page=").concat(pageNumber, "&include_adult=false");
-  }
-
+  var API = "\n    https://api.themoviedb.org/3/search/movie?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&query=".concat(inputValue, "&page=").concat(pageNumber, "&include_adult=false");
   fetch(API).then(function (response) {
     return response.json();
   }).then(function (data) {
@@ -140,6 +131,7 @@ function fetchFilms(inputValue, pageNumber) {
 
     if (inputValue !== '' && arr.length === 0) {
       errorMessage.hidden = false;
+      inputValue = '';
       fetchPopularMoviesList();
     }
 
@@ -158,8 +150,6 @@ function fetchFilms(inputValue, pageNumber) {
   });
   input.value = '';
 }
-
-form.addEventListener('submit', searchFilms);
 "use strict";
 
 var jsLogo = document.querySelector('#js-logo');
