@@ -6,7 +6,7 @@ const prevBtn = pagination.querySelector('[data-action = "prev"]');
 const nextBtn = pagination.querySelector('[data-action = "next"]');
 const pageValue = pagination.querySelector('.homePage__value');
 
-let inputValue = '';
+let inputValue;
 
 pageValue.textContent = pageNumber;
 const errorMessage = document.createElement('p');
@@ -16,11 +16,12 @@ errorMessage.hidden = true;
 
 form.append(errorMessage);
 
-pagination.addEventListener('click', plaginationNavigation);
+pagination.addEventListener('click', paginationNavigation);
+form.addEventListener('submit', searchFilms);
 
-function plaginationNavigation(evt) {
+function paginationNavigation(evt) {
   const target = evt.target;
-
+  
   if (pageNumber === 2) {
     prevBtn.classList.add('hidden');
   }
@@ -28,7 +29,7 @@ function plaginationNavigation(evt) {
   if (target === prevBtn) {
     pageNumber -= 1;
     pageValue.textContent = pageNumber;
-    if (inputValue === '') {
+    if (!inputValue) {
       jsList.innerHTML = '';
       fetchPopularMoviesList();
     } else {
@@ -41,9 +42,10 @@ function plaginationNavigation(evt) {
     pageValue.textContent = pageNumber;
     prevBtn.classList.remove('hidden');
 
-    if (inputValue === '') {
+    if (!inputValue) {
       jsList.innerHTML = '';
       fetchPopularMoviesList();
+
     } else {
       fetchFilms(inputValue, pageNumber);
     }
@@ -53,20 +55,22 @@ function plaginationNavigation(evt) {
 function searchFilms(evt) {
   evt.preventDefault();
   errorMessage.hidden = true;
-  inputValue = input.value;
-  if (inputValue === '') { 
-    jsList.innerHTML = '';
-    fetchPopularMoviesList();
-  } else {
+
+  if(input.value){
+    inputValue = input.value;
     fetchFilms(inputValue, 1);
     pageNumber = 1;
     pageValue.textContent = pageNumber;
     prevBtn.classList.add('hidden');
+  } else {
+    jsList.innerHTML = '';
+    fetchPopularMoviesList();
   }
+
 }
 
 function fetchFilms(inputValue, pageNumber) {
-
+  
   let API = `
     https://api.themoviedb.org/3/search/movie?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&query=${inputValue}&page=${pageNumber}&include_adult=false`;
   
@@ -77,6 +81,7 @@ function fetchFilms(inputValue, pageNumber) {
       const arr = data.results;
       if (inputValue !== '' && arr.length === 0) {
         errorMessage.hidden = false;
+        inputValue = '';
         fetchPopularMoviesList();
       }
 
@@ -94,7 +99,4 @@ function fetchFilms(inputValue, pageNumber) {
     .catch(error => console.log('ERROR' + error));
 
   input.value = '';
-  
 }
-
-form.addEventListener('submit', searchFilms);

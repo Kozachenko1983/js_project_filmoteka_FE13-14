@@ -17,6 +17,7 @@ let selectFilm = {};
 
 
 function fetchPopularMoviesList() {
+    
     fetch('https://api.themoviedb.org/3/movie/popular?api_key=8498946f9c7874ef33ac19a931c494c9&language=en-US&page=' + `${pageNumber}`)
         .then(response => {
             if (response.ok) return response.json();
@@ -44,6 +45,7 @@ function fetchPopularMoviesList() {
 
         })
         .catch(error => console.log(error));
+        inputValue = '';
 }
 
 function createCardFunc(imgPath, filmTitle, movieId) {
