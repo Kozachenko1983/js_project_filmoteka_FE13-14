@@ -78,9 +78,10 @@
 
 #homePage__search-error-message {
   position: absolute;
-  bottom: 0;
+  bottom: 4px;
   left: 50%;
   transform: translateX(-50%);
+  color: red;
   font-size: 12px;
 }
 
@@ -121,7 +122,6 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
-
 
   .homePage__items {
     width: 348px;
